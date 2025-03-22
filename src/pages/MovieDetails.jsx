@@ -138,7 +138,7 @@ function MovieDetails() {
               <h3>Similar Movies</h3>
               <div className="recommendations">
                 {movie.recommendations.results
-                  .slice(0, 6)
+                  .slice(0, 4)
                   .map((recommendation) => (
                     <Link
                       to={`/movie/${recommendation.id}`}
