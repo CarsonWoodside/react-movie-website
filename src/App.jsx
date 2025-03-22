@@ -1,12 +1,14 @@
+// In src/App.jsx
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import MovieDetails from "./pages/MovieDetails";
 import NavBar from "./components/NavBar";
 import { MovieProvider } from "./contexts/MovieContext";
 
 function App() {
-  const location = useLocation(); // Get current page location
+  const location = useLocation();
 
   return (
     <MovieProvider>
@@ -16,6 +18,7 @@ function App() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/movie/:id" element={<MovieDetails />} />{" "}
           </Routes>
         </AnimatePresence>
       </main>

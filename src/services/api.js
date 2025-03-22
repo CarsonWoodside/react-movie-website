@@ -13,3 +13,17 @@ export const searchMovies = async (query) => {
     return data.results
 };
 
+export const getMovieDetails = async (movieId) => {
+    try {
+        const response = await fetch (`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&append_to_response=credits,videos,recommendations`);
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch movie details...");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching movie details", error);
+        throw error;
+    }
+}
