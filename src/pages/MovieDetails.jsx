@@ -32,11 +32,13 @@ function MovieDetails() {
 
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error-message">{error}</div>;
-  if (!movie) return <div className="error-message">Movie not found</div>;
+  if (!movie) return <div className="error-message">Movie not found...</div>;
 
   const favorite = isFavorite(movie.id);
 
-  function handleFavoriteClick() {
+  function handleFavoriteClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
     if (favorite) removeFromFavorites(movie.id);
     else addToFavorites(movie);
   }
@@ -64,18 +66,18 @@ function MovieDetails() {
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
           />
-          <button
-            className={`favorite-btn ${favorite ? "active" : ""}`}
-            onClick={handleFavoriteClick}
-          >
-            {favorite ? "Remove from Favorites" : "Add to Favorites"}
-          </button>
         </div>
 
         <div className="info">
           <h1>
             {movie.title}{" "}
             <span className="year">({movie.release_date?.split("-")[0]})</span>
+            <button
+              className={`favorite-btn ${favorite ? "active" : ""}`}
+              onClick={handleFavoriteClick}
+            >
+              ❤
+            </button>
           </h1>
 
           <div className="meta">
