@@ -23,7 +23,58 @@ export const getMovieDetails = async (movieId) => {
 
         return await response.json();
     } catch (error) {
-        console.error("Error fetching movie details", error);
+        console.error("Error fetching movie details...", error);
+        throw error;
+    }
+}
+
+export const getActorDetails = async (actorId) => {
+    try {
+        const response = await fetch (
+            `${BASE_URL}/person/${actorId}?api_key=${API_KEY}&append_to_response=images`
+        );
+
+        if (!response.ok) {
+            throw new Error ("Failed to fetch actor details...");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching actor details...", error);
+        throw error;
+    }
+}
+
+export const getActorMovieCredits = async (actorId) => {
+    try {
+        const response = await fetch (
+            `${BASE_URL}/person/${actorId}/movie_credits?api_key=${API_KEY}`
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch actor movie credits...");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching actor movie credits...", error);
+        throw error;
+    }
+}
+
+export const getActorCombinedDetails = async (actorId) => {
+    try {
+        const response = await fetch (
+            `${BASE_URL}/person/${actorId}?api_key=${API_KEY}&append_to_response=movie_credits,images,external_ids`
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch combined actor details...");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching combined actor details...", error);
         throw error;
     }
 }

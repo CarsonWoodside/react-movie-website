@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { getMovieDetails } from "../services/api";
 import { useMovieContext } from "../contexts/MovieContext";
 import { motion } from "framer-motion";
+import ActorCard from "../components/ActorCard"; // Add this line
 import "../css/MovieDetails.css";
 
 function MovieDetails() {
@@ -94,17 +95,8 @@ function MovieDetails() {
           <h3>Cast</h3>
           <div className="cast">
             {movie.credits.cast.slice(0, 5).map((person) => (
-              <div key={person.id} className="cast-member">
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${person.profile_path}`}
-                  alt={person.name}
-                  onError={(e) => {
-                    e.target.src = "/placeholder-person.jpg"; // Fallback image
-                  }}
-                />
-                <p>{person.name}</p>
-                <p className="character">{person.character}</p>
-              </div>
+              // Replace this with ActorCard component
+              <ActorCard key={person.id} actor={person} />
             ))}
           </div>
 

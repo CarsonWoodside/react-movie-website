@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import MovieDetails from "./pages/MovieDetails";
+import ActorDetails from "./pages/ActorDetails"; // Add this line
 import NavBar from "./components/NavBar";
 import { MovieProvider } from "./contexts/MovieContext";
 
@@ -18,7 +19,8 @@ function App() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/favorites" element={<Favorites />} />
-            <Route path="/movie/:id" element={<MovieDetails />} />{" "}
+            <Route path="/movie/:id" element={<MovieDetails />} />
+            <Route path="/actor/:id" element={<ActorDetails />} />{" "}
           </Routes>
         </AnimatePresence>
       </main>
